@@ -23,12 +23,10 @@ router.get('/getall', isLoggedIn, function (req, res) {
 
 //api to upload the image to cloudinary server
 router.post('/upload', isLoggedIn, fileParser, function (req, res) {
-  console.log(req.files);
   var imageFile = req.files.cropped_image[0];
 
   cloudinary.uploader.upload(imageFile.path, function (result) {
     if (result.url) {
-      console.log(result);
       return res.send(result);
     } else {
       console.log('Error uploading to cloudinary: ', result);
