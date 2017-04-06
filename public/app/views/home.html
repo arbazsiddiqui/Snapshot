@@ -1,0 +1,52 @@
+<div ng-controller="ImageController">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/home">
+          Snapshot
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>Hello {{user.name}} <br> <a ng-click="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <h1 align="center">SnapShot</h1>
+      <div class="panel panel-info">
+        <form class="panel-body" ng-submit="uploadFile()" id="form">
+          <h3 align="center">Your Images</h3>
+          <div id="userImages">
+            <div ng-repeat="image in images">
+              <a ng-click="displayImages(image._id)"><img width="200" height="100" ng-src={{image.images.horizontal.url}} />
+              </a>
+            </div>
+          </div>
+          <label for="file">Upload Image</label>
+          <input id="file" type="file"/>
+          <h2>{{helperText}}</h2>
+          <div ng-if="uploadFlag">
+            <div id="jcrop"></div>
+            <h2>Cropped Preview ({{helperText}})</h2>
+            <canvas id="canvas"></canvas>
+            <input id="png" type="hidden"/>
+            <input class="btn btn-default" type="submit" value="Upload"/>
+          </div>
+        </form>
+      </div>
+      <div class="panel panel-info">
+        <div class="panel-body">
+          <div ng-repeat="(key, value) in displayImage.images">
+            <h3>{{key}}</h3>
+            <img ng-src={{value.url}}>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,1 @@
+angular.module('Snapshot', ['imageCtrl', 'imageService', 'ngJcrop']);
